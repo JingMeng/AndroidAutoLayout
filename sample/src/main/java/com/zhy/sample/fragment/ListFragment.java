@@ -2,8 +2,8 @@ package com.zhy.sample.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,7 +88,7 @@ public class ListFragment extends Fragment
                 holder = new ViewHolder();
                 convertView = LayoutInflater.from(mContext).inflate(R.layout.list_item, parent, false);
                 convertView.setTag(holder);
-                //对于listview，注意添加这一行，即可在item上使用高度
+                //瀵逛簬listview锛屾敞鎰忔坊鍔犺繖涓€琛岋紝鍗冲彲鍦╥tem涓婁娇鐢ㄩ珮搴?
                 AutoUtils.autoSize(convertView);
             } else
             {
@@ -106,3 +106,4 @@ public class ListFragment extends Fragment
     }
 
 }
+

@@ -2,10 +2,10 @@ package com.zhy.sample;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import com.google.android.material.tabs.TabLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.sample.fragment.SimpleFragment;
@@ -17,7 +17,7 @@ public class CategoryActivity extends AutoLayoutActivity
     private ViewPager mViewPager;
 
     private String[] mTabTitles = new String[]
-            {"单个UI", "正方形"};
+            {"鍗曚釜UI", "姝ｆ柟褰?};
 
 
     @Override
@@ -63,3 +63,4 @@ public class CategoryActivity extends AutoLayoutActivity
     }
 
 }
+

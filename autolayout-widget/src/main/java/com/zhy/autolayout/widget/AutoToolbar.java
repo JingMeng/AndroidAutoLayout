@@ -2,7 +2,7 @@ package com.zhy.autolayout.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -26,30 +26,19 @@ public class AutoToolbar extends Toolbar {
 
     public AutoToolbar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Toolbar,
-                defStyleAttr, R.style.Widget_AppCompat_Toolbar);
+        TypedArray a = context.obtainStyledAttributes(attrs, androidx.appcompat.R.styleable.Toolbar,
+                defStyleAttr, androidx.appcompat.R.style.Widget_AppCompat_Toolbar);
 
-        int titleTextAppearance = a.getResourceId(R.styleable.Toolbar_titleTextAppearance,
-                R.style.TextAppearance_Widget_AppCompat_Toolbar_Title);
+        int titleTextAppearance = a.getResourceId(androidx.appcompat.R.styleable.Toolbar_titleTextAppearance,
+                androidx.appcompat.R.style.TextAppearance_Widget_AppCompat_Toolbar_Title);
 
-        int subtitleTextAppearance = a.getResourceId(R.styleable.Toolbar_subtitleTextAppearance,
-                R.style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle);
+        int subtitleTextAppearance = a.getResourceId(androidx.appcompat.R.styleable.Toolbar_subtitleTextAppearance,
+                androidx.appcompat.R.style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle);
 
         mTextSize = loadTextSizeFromTextAppearance(titleTextAppearance);
         mSubTextSize = loadTextSizeFromTextAppearance(subtitleTextAppearance);
 
-        TypedArray menuA = context.getTheme().obtainStyledAttributes(attrs, R.styleable.Theme,
-                defStyleAttr, R.style.ThemeOverlay_AppCompat);
-        int menuTextAppearance = menuA.getResourceId(R.styleable.Theme_actionBarTheme,
-                R.style.ThemeOverlay_AppCompat_ActionBar);
-        int menuTextSize = loadTextSizeFromTextAppearance(menuTextAppearance);
-
-        //防止 menu 定义 textSize，而 Toolbar 无定义 textSize 时，title 的 textSize 随 menu 变化
-        if (mTextSize == NO_VALID) mTextSize = menuTextSize;
-        if (mSubTextSize == NO_VALID) mSubTextSize = menuTextSize;
-
         a.recycle();
-        menuA.recycle();
     }
 
     public AutoToolbar(Context context, AttributeSet attrs) {
@@ -61,12 +50,13 @@ public class AutoToolbar extends Toolbar {
     }
 
     private int loadTextSizeFromTextAppearance(int textAppearanceResId) {
+        if (textAppearanceResId == 0) return NO_VALID;
         TypedArray a = getContext().obtainStyledAttributes(textAppearanceResId,
-                R.styleable.TextAppearance);
+                androidx.appcompat.R.styleable.TextAppearance);
         try {
-            if (!DimenUtils.isPxVal(a.peekValue(R.styleable.TextAppearance_android_textSize)))
+            if (!DimenUtils.isPxVal(a.peekValue(androidx.appcompat.R.styleable.TextAppearance_android_textSize)))
                 return NO_VALID;
-            return a.getDimensionPixelSize(R.styleable.TextAppearance_android_textSize, NO_VALID);
+            return a.getDimensionPixelSize(androidx.appcompat.R.styleable.TextAppearance_android_textSize, NO_VALID);
         } finally {
             a.recycle();
         }
@@ -83,7 +73,6 @@ public class AutoToolbar extends Toolbar {
 
     private void setUpTitleTextSize(String name, int val) {
         try {
-            //反射 Toolbar 的 TextView
             Field f = getClass().getSuperclass().getDeclaredField(name);
             f.setAccessible(true);
             TextView textView = (TextView) f.get(this);

@@ -1,11 +1,11 @@
 package com.zhy.autolayout.test.widgets;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.tabs.TabLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,7 +23,7 @@ public class MainActivity extends AutoLayoutWidgetActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("标题");
+        toolbar.setTitle("鏍囬");
         setSupportActionBar(toolbar);
         mTabLayout = (TabLayout) findViewById(R.id.id_tablayout);
         mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
@@ -71,3 +71,4 @@ public class MainActivity extends AutoLayoutWidgetActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

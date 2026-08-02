@@ -2,7 +2,7 @@ package com.zhy.autolayout.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.design.widget.TabLayout;
+import com.google.android.material.tabs.TabLayout;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.ViewGroup;
@@ -36,10 +36,10 @@ public class AutoTabLayout extends TabLayout
 
         initTextSizeBaseWidth(context, attrs);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TabLayout,
-                defStyleAttr, R.style.Widget_Design_TabLayout);
-        int tabTextAppearance = a.getResourceId(R.styleable.TabLayout_tabTextAppearance,
-                R.style.TextAppearance_Design_Tab);
+        TypedArray a = context.obtainStyledAttributes(attrs, com.google.android.material.R.styleable.TabLayout,
+                defStyleAttr, com.google.android.material.R.style.Widget_Design_TabLayout);
+        int tabTextAppearance = a.getResourceId(com.google.android.material.R.styleable.TabLayout_tabTextAppearance,
+                com.google.android.material.R.style.TextAppearance_Design_Tab);
 
         mTextSize = loadTextSizeFromTextAppearance(tabTextAppearance);
         a.recycle();
@@ -55,13 +55,13 @@ public class AutoTabLayout extends TabLayout
     private int loadTextSizeFromTextAppearance(int textAppearanceResId)
     {
         TypedArray a = getContext().obtainStyledAttributes(textAppearanceResId,
-                R.styleable.TextAppearance);
+                androidx.appcompat.R.styleable.TextAppearance);
 
         try
         {
-            if (!DimenUtils.isPxVal(a.peekValue(R.styleable.TextAppearance_android_textSize)))
+            if (!DimenUtils.isPxVal(a.peekValue(androidx.appcompat.R.styleable.TextAppearance_android_textSize)))
                 return NO_VALID;
-            return a.getDimensionPixelSize(R.styleable.TextAppearance_android_textSize, NO_VALID);
+            return a.getDimensionPixelSize(androidx.appcompat.R.styleable.TextAppearance_android_textSize, NO_VALID);
         } finally
         {
             a.recycle();
@@ -110,3 +110,4 @@ public class AutoTabLayout extends TabLayout
 
 
 }
+

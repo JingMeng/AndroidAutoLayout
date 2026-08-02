@@ -12,7 +12,7 @@ import com.zhy.autolayout.AutoLayoutActivity;
 public class AutoLayoutWidgetActivity extends AutoLayoutActivity {
 
     private static final String ACTION_MENU_ITEM_VIEW = "android.support.v7.view.menu.ActionMenuItemView";
-    private static final String TAB_LAYOUT = "android.support.design.widget.TabLayout";
+    private static final String TAB_LAYOUT = "com.google.android.material.tabs.TabLayout";
 
     @Override
     public View onCreateView(String name, Context context, AttributeSet attrs) {

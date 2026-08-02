@@ -3,9 +3,10 @@ package com.zhy.autolayout.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 
-import android.support.v7.view.menu.ActionMenuItemView;
+import androidx.appcompat.view.menu.ActionMenuItemView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.R;
 
 
 import com.zhy.autolayout.utils.AutoUtils;
@@ -28,10 +29,9 @@ public class AutoActionMenuItemView extends ActionMenuItemView {
 
     public AutoActionMenuItemView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.Theme,
-                defStyle, R.style.ThemeOverlay_AppCompat);
-        int menuTextAppearance = a.getResourceId(R.styleable.Theme_actionBarTheme,
-                R.style.ThemeOverlay_AppCompat_ActionBar);
+        int[] themeAttrs = new int[] { android.R.attr.actionBarTheme };
+        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, themeAttrs, defStyle, 0);
+        int menuTextAppearance = a.getResourceId(0, 0);
         mMenuTextSize = loadTextSizeFromTextAppearance(menuTextAppearance);
         a.recycle();
     }
@@ -46,11 +46,11 @@ public class AutoActionMenuItemView extends ActionMenuItemView {
 
     private int loadTextSizeFromTextAppearance(int textAppearanceResId) {
         TypedArray a = getContext().obtainStyledAttributes(textAppearanceResId,
-                R.styleable.TextAppearance);
+                androidx.appcompat.R.styleable.TextAppearance);
         try {
-            if (!DimenUtils.isPxVal(a.peekValue(R.styleable.TextAppearance_android_textSize)))
+            if (!DimenUtils.isPxVal(a.peekValue(androidx.appcompat.R.styleable.TextAppearance_android_textSize)))
                 return NO_VALID;
-            return a.getDimensionPixelSize(R.styleable.TextAppearance_android_textSize, NO_VALID);
+            return a.getDimensionPixelSize(androidx.appcompat.R.styleable.TextAppearance_android_textSize, NO_VALID);
         } finally {
             a.recycle();
         }
